@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "A CLI to scaffold vue-ssr projects",
   "bin": {
-    "create-yourtool": "./bin/cli.js"
+    "create-vue-ssr": "./bin/cli.js"
   },
   "type": "module",
   "keywords": ["cli", "scaffold", "template","vue", "ssr"],
