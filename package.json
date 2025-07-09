@@ -1,0 +1,16 @@
+{
+  "name": "create-vue-ssr",
+  "version": "1.0.0",
+  "description": "A CLI to scaffold vue-ssr projects",
+  "bin": {
+    "create-yourtool": "./bin/cli.js"
+  },
+  "type": "module",
+  "keywords": ["cli", "scaffold", "template","vue", "ssr"],
+  "author": "tianchang",
+  "license": "MIT",
+  "dependencies": {
+    "prompts": "^2.4.2",
+    "fs-extra": "^11.1.1"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "watch": ["server", "src"],
+  "ext": "js,ts,vue",
+  "ignore": ["dist", "node_modules"],
+  "exec": "node server/index.js"
+}
