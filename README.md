@@ -93,7 +93,7 @@ your-project/
 如果你想为这个项目贡献代码：
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/tianchangNorth/create-vue-ssr.git
 cd create-vue-ssr
 pnpm install
 ```
