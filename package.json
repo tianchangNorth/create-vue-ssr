@@ -1,6 +1,6 @@
 {
   "name": "create-vue-ssr",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A CLI to scaffold vue-ssr projects",
   "repository":"https://github.com/tianchangNorth/create-vue-ssr.git",
   "homepage":"https://github.com/tianchangNorth/create-vue-ssr",
