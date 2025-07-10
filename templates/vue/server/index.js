@@ -42,6 +42,7 @@ async function createServer() {
         // 生产环境
         template = await readFile('./dist/client/index.html', 'utf-8')
         render = (await import('./dist/server/entry-server.js')).render
+        manifest = JSON.parse(await readFile('./dist/client/ssr-manifest.json', 'utf-8'))
       }
 
       const context = {
@@ -50,13 +51,15 @@ async function createServer() {
         response: res
       }
 
-      const { html, state, meta, statusCode } = await render(context)
+      const { html, state, preload, meta, statusCode } = await render(context)
 
       const finalHtml = template
         .replace('{{%html%}}', html)
         .replace('{{%state%}}', state)
         .replace('{{%title%}}', meta.title)
         .replace('{{%description%}}', meta.description)
+        .replace('{{%keywords%}}', meta.keywords)
+        .replace('{{%:=preload%}}', preload)
 
       res.status(statusCode).set({ 'Content-Type': 'text/html' }).end(finalHtml)
     } catch (e) {

@@ -10,6 +10,7 @@ export default defineConfig({
     }
   },
   build: {
+    ssrManifest: true,
     rollupOptions: {
       input: 'src/index.html'
     }
