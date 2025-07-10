@@ -1,6 +1,7 @@
 import express from 'express'
-import { fileURLToPath, URL } from 'node:url'
+import { fileURLToPath, pathToFileURL, URL } from 'node:url'
 import { readFile } from 'node:fs/promises'
+import path from 'node:path'
 
 const __dirname = fileURLToPath(new URL('.', import.meta.url))
 const isProduction = process.env.NODE_ENV === 'production'
@@ -32,6 +33,7 @@ async function createServer() {
 
       let template
       let render
+      let manifest
       
       if (!isProduction) {
         // 开发环境
@@ -40,9 +42,15 @@ async function createServer() {
         render = (await vite.ssrLoadModule('/src/entry-server.ts')).render
       } else {
         // 生产环境
-        template = await readFile('./dist/client/index.html', 'utf-8')
-        render = (await import('./dist/server/entry-server.js')).render
-        manifest = JSON.parse(await readFile('./dist/client/ssr-manifest.json', 'utf-8'))
+        const templatePath = path.resolve(__dirname, '../dist/client/src/index.html')
+        template = await readFile(templatePath, 'utf-8')
+
+        const entryPath = path.resolve(__dirname, '../dist/server/entry-server.js')
+        const entryUrl = pathToFileURL(entryPath)
+        render  = (await import(entryUrl.href)).render
+        
+        const manifestPath = path.resolve(__dirname, '../dist/client/.vite/ssr-manifest.json')
+        manifest = JSON.parse(await readFile(manifestPath, 'utf-8'))
       }
 
       const context = {
