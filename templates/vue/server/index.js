@@ -55,6 +55,7 @@ async function createServer() {
 
       const context = {
         url,
+        manifest,
         request: req,
         response: res
       }
