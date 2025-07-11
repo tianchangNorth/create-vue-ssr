@@ -64,7 +64,10 @@ export async function render({ url, manifest, request, response }: RenderContext
     keywords = ctx.keywords;
   }
 
-  const preloadLinks = renderPreloadLinks(ctx.modules ?? [], manifest);
+  const isProd = process.env.NODE_ENV === 'production';
+  const preloadLinks = isProd && ctx.modules
+    ? renderPreloadLinks(ctx.modules, manifest)
+    : '';
 
   return {
     html,
