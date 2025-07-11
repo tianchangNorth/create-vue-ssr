@@ -21,6 +21,7 @@ async function createServer() {
   } else {
     // 生产环境
     app.use('/assets',express.static('dist/client/assets'))
+    app.use('/favicon.ico',express.static('dist/client/favicon.ico'))
   }
 
   app.use('{*path}', async (req, res, next) => {
