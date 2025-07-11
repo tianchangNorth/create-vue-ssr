@@ -41,9 +41,6 @@ export async function render({ url, manifest, request, response }: RenderContext
     }
   }
 
-  // 渲染应用
-  const html = await renderToString(app)
-
   // 获取路由元信息
   const meta = router.currentRoute.value.meta
   let title = meta.title as string || 'Vue SSR App'
@@ -51,6 +48,8 @@ export async function render({ url, manifest, request, response }: RenderContext
   let keywords = meta.keywords as string || 'Vue SSR Application'
 
   const ctx: AppContext = {};
+  const html = await renderToString(app, ctx);
+
   if (ctx.redirect) {
     response.redirect(ctx.redirect);
     return false;

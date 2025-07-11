@@ -20,7 +20,7 @@ async function createServer() {
     app.use(vite.middlewares)
   } else {
     // 生产环境
-    app.use(express.static('dist/client'))
+    app.use('/assets',express.static('dist/client/assets'))
   }
 
   app.use('{*path}', async (req, res, next) => {
@@ -37,12 +37,12 @@ async function createServer() {
       
       if (!isProduction) {
         // 开发环境
-        template = await readFile('./src/index.html', 'utf-8')
+        template = await readFile('./index.html', 'utf-8')
         template = await vite.transformIndexHtml(url, template)        
         render = (await vite.ssrLoadModule('/src/entry-server.ts')).render
       } else {
         // 生产环境
-        const templatePath = path.resolve(__dirname, '../dist/client/src/index.html')
+        const templatePath = path.resolve(__dirname, '../dist/client/index.html')
         template = await readFile(templatePath, 'utf-8')
 
         const entryPath = path.resolve(__dirname, '../dist/server/entry-server.js')
