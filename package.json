@@ -1,14 +1,23 @@
 {
   "name": "create-vue-ssr",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "A CLI to scaffold vue-ssr projects",
-  "repository":"https://github.com/tianchangNorth/create-vue-ssr.git",
-  "homepage":"https://github.com/tianchangNorth/create-vue-ssr",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tianchangNorth/create-vue-ssr.git"
+  },
+  "homepage": "https://github.com/tianchangNorth/create-vue-ssr",
   "bin": {
-    "create-vue-ssr": "./bin/cli.js"
+    "create-vue-ssr": "bin/cli.js"
   },
   "type": "module",
-  "keywords": ["cli", "scaffold", "template","vue", "ssr"],
+  "keywords": [
+    "cli",
+    "scaffold",
+    "template",
+    "vue",
+    "ssr"
+  ],
   "author": "tianchang",
   "license": "MIT",
   "dependencies": {
