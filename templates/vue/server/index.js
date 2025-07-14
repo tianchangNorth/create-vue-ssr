@@ -20,8 +20,10 @@ async function createServer() {
     app.use(vite.middlewares)
   } else {
     // 生产环境
-    app.use('/assets',express.static('dist/client/assets'))
-    app.use('/favicon.ico',express.static('dist/client/favicon.ico'))
+    // 代理所有静态文件，但排除index.html以确保SSR逻辑正常执行
+    app.use(express.static('dist/client', {
+      index: false,
+    }))
   }
 
   app.use('{*path}', async (req, res, next) => {
